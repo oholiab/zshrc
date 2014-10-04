@@ -4,9 +4,9 @@ zshrc
 How
 ---
 
-  git clone https://github.com/oholiab/zshrc.git .zshrc
-  cd .zshrc
-  ./setup.sh
+    git clone https://github.com/oholiab/zshrc.git .zshrc
+    cd .zshrc
+    ./setup.sh
 
 Then pretend to be me.
 
