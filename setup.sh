@@ -6,9 +6,11 @@ else
   home=$HOME
 fi
 
+export initdir=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
+
 function exists-or-clone {
   if [ -z $2 ]; then
-    local dest="plugins/$(echo $1 | sed -E 's|.+/(.+)|\1|' | sed -E 's/\.git//')"
+    local dest="${initdir}/plugins/$(echo $1 | sed -E 's|.+/(.+)|\1|' | sed -E 's/\.git//')"
   else
     local dest=$2
   fi
@@ -23,8 +25,6 @@ read -d '' remotes <<EOF
 git://github.com/robbyrussell/oh-my-zsh.git ${home}/.oh-my-zsh
 https://github.com/hchbaw/opp.zsh
 EOF
-
-cd $home
 
 echo "$remotes" | while IFS=\n read -r i; do
   exists-or-clone $i
