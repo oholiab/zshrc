@@ -21,14 +21,28 @@ plugins=(git mosh bundler opp)
 
 source $ZSH/oh-my-zsh.sh
 
-THE_PROMPT=$'%{$fg[red]%}┌[%{$fg_bold[white]%}%n%{$reset_color%}%{$fg[red]%}@%{$fg_bold[white]%}%m%{$reset_color%}%{$fg[red]%}] %{$(git_prompt_info)%}%(?,,%{$fg[red]%}[%{$fg_bold[white]%}%?%{$reset_color%}%{$fg[red]%}])
-%{$fg[red]%}└[%{$fg_bold[white]%}%~%{$reset_color%}%{$fg[red]%}]>%{$reset_color%} '
-PROMPT="$THE_PROMPT"
+typeset -A host_colors
+host_colors["ldneng50-146"]=020
+host_colors["YELP-USERNAME"]=020
+
+function get_host_color {
+  color="${host_colors["$1"]}"
+  
+  if [ "$color" = '' ]; then
+    color=$(printf "%03d" $(($(echo $1 | sum | awk '{print substr($0,0,3)}') % 255)))
+  fi
+  echo $color
+}
+host_color="$(get_host_color "$(hostname -s)")"
+
+THE_PROMPT=$'%{$FG[$host_color]%}┌[%{$fg_bold[white]%}%n%{$reset_color%}%{$FG[$host_color]%}@%{$fg_bold[white]%}%m%{$reset_color%}%{$FG[$host_color]%}] %{$(git_prompt_info)%}%(?,,%{$FG[$host_color]%}[%{$fg_bold[white]%}%?%{$reset_color%}%{$FG[$host_color]%}])
+%{$FG[$host_color]%}└[%{$fg_bold[white]%}%~%{$reset_color%}%{$FG[$host_color]%}]>%{$reset_color%} '
+CMD_PROMPT="⛧  "
+INS_PROMPT="🜏  "
+PROMPT="${THE_PROMPT}${INS_PROMPT}"
 
 function zle-line-init zle-keymap-select {
   PROMPT="$THE_PROMPT"
-  CMD_PROMPT="⛧  "
-  INS_PROMPT="🜏  "
   PROMPT="$PROMPT${${KEYMAP/vicmd/$CMD_PROMPT}/(main|viins)/$INS_PROMPT}"
   zle reset-prompt
 }
