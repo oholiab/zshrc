@@ -17,7 +17,7 @@ ZSH_CUSTOM=$HOME/.zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mosh bundler opp)
+plugins=(ssh git mosh bundler opp)
 
 source $ZSH/oh-my-zsh.sh
 
