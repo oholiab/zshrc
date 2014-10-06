@@ -24,6 +24,7 @@ source $ZSH/oh-my-zsh.sh
 typeset -A host_colors
 host_colors["ldneng50-146"]=020
 host_colors["YELP-USERNAME"]=020
+host_colors["beef"]=238
 
 function get_host_color {
   color="${host_colors["$1"]}"
