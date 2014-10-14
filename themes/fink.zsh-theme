@@ -15,7 +15,7 @@ function get_host_color {
 host_color="$(get_host_color "$(hostname -s)")"
 
 INS_PROMPT="🜏  "
-CMD_PROMPT="⛤  "
+CMD_PROMPT="⛧  "
 
 THE_PROMPT='%{$FG[$host_color]%}λ %{$reset_color%}%~/ $(git_prompt_info)%{$reset_color%}'
 PROMPT="${THE_PROMPT}${INS_PROMPT}"
