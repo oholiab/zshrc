@@ -26,7 +26,6 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-
 export PATH=$HOME/local/bin:$HOME/bin:/usr/local/bin:$PATH:/usr/local/sbin
 export EDITOR=vim
 export KEYTIMEOUT=1
